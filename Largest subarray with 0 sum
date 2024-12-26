@@ -1,0 +1,13 @@
+class Solution:
+    def maxLen(self, arr):
+        # code here
+        d={0:-1}
+        m=0
+        s=0
+        for i in range(len(arr)):
+            s+=arr[i]
+            if s in d.keys():
+                m = max(m,i-d[s])     
+            else:
+                d[s] = i
+        return m
