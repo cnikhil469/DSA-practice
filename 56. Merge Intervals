@@ -1,0 +1,29 @@
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        res=[]
+        g = intervals
+        b=None
+        currSP, currEP, prevSP, prevEP,sp, ep = 0,0,None,None, None, None
+        g = sorted(g, key= lambda x: x[0])
+        for i in range(len(g)): 
+            currSP = g[i][0]
+            currEP = g[i][1]
+            if i == 0:
+               sp = currSP
+               ep = currEP
+               prevSP = currSP
+               prevEP = currEP
+               continue
+            if prevEP != None and currSP - prevEP <= 0:
+                ep = max(currEP, prevEP)
+            else:
+                res.append([sp, ep])
+                sp = currSP
+                ep = currEP
+            prevSP = sp
+            prevEP = ep
+        res.append([sp,ep])
+        return res
+
+
+            
