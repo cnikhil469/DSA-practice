@@ -1,0 +1,17 @@
+class Solution:
+    # @param A : list of integers
+    # @param B : integer
+    # @return an integer
+    def solve(self, A, B):
+        d={0:1}
+        cnt=0
+        x=0
+        for i in A:
+            x^=i
+            if x^B in d.keys():
+                cnt+=d[x^B]
+            if x in d.keys():
+                d[x] += 1
+            else:
+                d[x] = 1
+        return cnt
