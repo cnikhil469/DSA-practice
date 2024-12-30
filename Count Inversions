@@ -1,0 +1,40 @@
+class Solution:
+    # User function Template for python3
+    # Function to count inversions in the array.
+    def inversionCount(self, arr, cnt=0):
+        # Your Code Here
+        if len(arr) > 1:
+            mid = len(arr) // 2
+            l_h = arr[:mid]
+            r_h = arr[mid:]
+
+            # Recursively count inversions in left and right halves
+            cnt = self.inversionCount(l_h, cnt)
+            cnt = self.inversionCount(r_h, cnt)
+
+            # Merge the two halves and count split inversions
+            i = j = k = 0
+            while i < len(l_h) and j < len(r_h):
+                if l_h[i] <= r_h[j]:
+                    arr[k] = l_h[i]
+                    i += 1
+                else:
+                    # Increment count by the number of remaining elements in left half
+                    cnt += len(l_h) - i
+                    arr[k] = r_h[j]
+                    j += 1
+                k += 1
+
+            # Append any remaining elements from the left half
+            while i < len(l_h):
+                arr[k] = l_h[i]
+                i += 1
+                k += 1
+
+            # Append any remaining elements from the right half
+            while j < len(r_h):
+                arr[k] = r_h[j]
+                j += 1
+                k += 1
+
+        return cnt
