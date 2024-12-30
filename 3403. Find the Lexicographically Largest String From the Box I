@@ -1,0 +1,29 @@
+class Solution:
+    def answerString(self, word: str, numFriends: int) -> str:
+        k = numFriends
+        d={}
+        m = len(word)
+        if k==1:
+            return word
+        for j,i in enumerate(word):
+            if i not in d.keys():
+                d[i] = [j]
+            else:
+                d[i].append(j)
+        g = list(d.keys())
+        g.sort()
+        g = g[-1]
+        ids = d[g]
+        j = m-k+1
+        res=[]
+        for i in ids:
+            if i+j <= m:
+                res.append(word[i:i+j])
+            else:
+                res.append(word[i:])
+        return max(res)
+        
+        
+        
+            
+            
