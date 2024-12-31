@@ -1,0 +1,34 @@
+class Solution:
+    def reversePairs(self, nums: List[int], cnt=0) -> int:
+        if len(nums) > 1:
+            mid = len(nums) // 2
+            lh = nums[:mid]
+            rh = nums[mid:]
+            cnt1 = self.reversePairs(lh, cnt)
+            cnt2 = self.reversePairs(rh, cnt)
+            i=j=k=0
+            cnt=cnt1+cnt2
+            while i<len(lh) and j<len(rh):
+                if lh[i] > 2*rh[j]:
+                    cnt+=len(lh)-i
+                    j+=1
+                else:
+                    i+=1
+            i=j=k=0
+            while i<len(lh) and j<len(rh):
+                if lh[i] <= rh[j]:
+                    nums[k] = lh[i]
+                    i+=1
+                else:
+                    nums[k] = rh[j]
+                    j+=1
+                k+=1
+            while i< len(lh):
+                nums[k] = lh[i]
+                i+=1
+                k+=1
+            while j<len(rh):
+                nums[k] = rh[j]
+                j+=1
+                k+=1
+        return cnt
