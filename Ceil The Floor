@@ -1,0 +1,46 @@
+#User function Template for python3
+
+class Solution:
+    def getFloorAndCeil(self, x: int, arr: list) -> list:
+        # code here
+        res=[None, None]
+        for i in arr:
+            if i<x:
+                if res[0] == None:
+                    res[0] = i
+                    continue
+                res[0] = max(res[0], i)
+            if i>x:
+                if res[1] == None:
+                    res[1] = i
+                    continue
+                res[1] = min(res[1], i)
+            if i == x:
+                res[0], res[1] = i,i
+        if res[0] == None:
+            res[0] = -1
+        if res[1] == None:
+            res[1] = -1
+        return res
+
+#{ 
+ # Driver Code Starts
+#Initial Template for Python 3
+
+
+def main():
+    t = int(input())
+    for _ in range(t):
+        x = int(input())
+        arr = list(map(int, input().split()))
+
+        ob = Solution()
+        ans = ob.getFloorAndCeil(x, arr)
+        print(ans[0], ans[1])
+        print("~")
+
+
+if __name__ == "__main__":
+    main()
+
+# } Driver Code Ends
