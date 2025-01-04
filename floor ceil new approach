@@ -1,0 +1,21 @@
+def getFloorAndCeil(a, n, x):
+    # Write your code here.
+    floor = float('-inf')
+    ceil = float('inf')
+    l=0
+    r=n-1
+    while(l<=r):
+        m = (l+r)//2
+        # if a[m] == x:
+        #     return [x,x]
+        if a[m] >= x:
+            ceil = min(ceil, a[m])
+            r=m-1
+        if a[m] <= x:
+            floor = max(floor, a[m])
+            l=m+1
+    if floor == float('-inf'):
+        floor = -1
+    if ceil == float('inf'):
+        ceil = -1
+    return [floor, ceil]
