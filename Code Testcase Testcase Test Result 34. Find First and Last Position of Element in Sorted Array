@@ -1,0 +1,27 @@
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        l,r=0,len(nums)-1
+        res=[float('inf'), float('-inf')]
+        while(l<=r):
+            m = (l+r)//2
+            if nums[m] == target:
+                res[0] = min(res[0], m)
+                res[1] = max(res[1], m)
+                for i in range(m-1, -1,-1):
+                    if nums[i] == target:
+                        res[0] = min(res[0], i)
+                    else:
+                        break
+                for i in range(m+1, r+1):
+                    if nums[i] == target:
+                        res[1] = max(res[1], i)
+                    else:
+                        break
+                break
+            if nums[m] > target:
+                r=m-1
+            if nums[m] < target:
+                l=m+1
+        res[0] = res[0] if not res[0] == float('inf') else -1
+        res[1] = res[1] if not res[1] == float('-inf') else -1
+        return res
