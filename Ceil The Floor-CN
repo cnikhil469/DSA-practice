@@ -1,0 +1,15 @@
+def getFloorAndCeil(a, n, x):
+    # Write your code here.
+    floor = float('-inf')
+    ceil = float('inf')
+    for i in a:
+        if i<=x:
+            floor = max(i, floor)
+        if i>=x:
+            ceil = min(ceil, i)
+    if floor == float('-inf'):
+        floor = -1
+    if ceil == float('inf'):
+        ceil = -1
+    # a = str(floor)+str(ceil)
+    return [floor, ceil]
