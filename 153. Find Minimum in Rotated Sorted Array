@@ -1,0 +1,13 @@
+class Solution:
+    def findMin(self, nums: List[int], floor=float('inf')) -> int:
+        l = len(nums)
+        if l>1:
+            m = l//2
+            floor = min(nums[m], floor)
+            floor = self.findMin(nums[:m], floor) 
+            if m+1<l:
+                floor = self.findMin(nums[m+1:], floor) 
+        else:
+            floor = min(nums[0], floor)
+        return floor
+        
