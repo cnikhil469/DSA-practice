@@ -1,0 +1,15 @@
+#User function Template for python3
+
+
+#Complete this function
+class Solution:
+    def floorSqrt(self, n): 
+    #Your code here
+        p=float('-inf')
+        for i in range(1,n):
+            k = i**2
+            if k==n:
+                return i
+            elif k>n:
+                return p
+            p=i
