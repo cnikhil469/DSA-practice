@@ -3,5 +3,26 @@ class Solution:
         if len(piles) == h:
             return max(piles)
         else:
-            m = min(piles)
-            for 
+            i,j=1,max(piles)
+            prev=0
+            while True:
+                k, hrs = (i+j)//2, 0
+                if self.yesOrNo(piles, k, h):
+                    j = k-1
+                    if k == 1:
+                        return 1
+                    if k > 1 and not (self.yesOrNo(piles,k-1,h)):
+                        return k
+                else:
+                    i=k+1
+    def yesOrNo(self,arr, k, h):
+        hrs=0
+        for i in arr:
+            d = i//k
+            if i%k > 0:
+                d+=1
+            hrs+=d
+            if hrs > h:
+                return False
+        if hrs <= h:
+            return True
