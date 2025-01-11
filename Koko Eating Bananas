@@ -1,0 +1,7 @@
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        if len(piles) == h:
+            return max(piles)
+        else:
+            m = min(piles)
+            for 
