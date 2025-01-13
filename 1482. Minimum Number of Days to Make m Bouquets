@@ -1,0 +1,40 @@
+class Solution:
+    def minDays(self, bloomDay: List[int], m: int, k: int) -> int:
+        nof = m*k
+        nums = bloomDay
+        if nof > len(nums):
+            return -1
+        m1, m2 = min(nums), max(nums)
+        while (m1<=m2):
+            mid = m1 + (m2-m1)//2
+            ans = self.isP(nums, mid, m, k)
+            if ans:
+                if mid == min(nums):
+                    return mid
+                m2 = mid-1
+                ans = self.isP(nums, m2, m, k)
+                if not ans:
+                    return mid
+            else:
+                m1 = mid+1
+                if m1<=max(nums):
+                    ans = self.isP(nums, m1, m, k)
+                    if ans:
+                        return m1
+    def isP(self, nums, d, m, k):
+        cnt=0
+        m1=0
+        for i in nums:
+            if i<=d:
+                cnt+=1
+            else:
+                m1+=cnt//k
+                cnt=0
+            if m1 == m:
+                return True
+        m1+=cnt//k
+        if m1 >= m:
+                return True
+        return False
+
+        
