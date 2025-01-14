@@ -1,0 +1,24 @@
+class Solution:
+    def smallestDivisor(self, nums: List[int], threshold: int) -> int:
+        t = threshold
+        if t == len(nums):
+            return max(nums)
+        l, r = 1, max(nums)+1
+        while l<r:
+            m = l+(r-l)//2
+            if self.isP(nums, m, t):
+                r=m
+            else:
+                l = m+1
+        return l
+    
+    def isP(self, nums, m, t):
+        cnt = 0
+        for i in nums:
+            d = i//m
+            if i%m:
+                d+=1
+            cnt+=d
+        return cnt<=t
+
+        
