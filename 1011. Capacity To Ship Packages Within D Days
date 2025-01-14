@@ -1,0 +1,30 @@
+class Solution:
+    def shipWithinDays(self, weights: List[int], days: int) -> int:
+        nums = weights
+        s = sum(nums)
+        l, r = max(nums), sum(nums)+1
+        while(l<r):
+            m = l+(r-l)//2
+            if self.isP(nums, m, days):
+                r=m
+            else:
+                l=m+1
+        return l
+
+    def isP(self, nums, m, d):
+        w=0
+        cnt=0
+        for i in nums:
+            w+=i
+            if w>m:
+                cnt+=1
+                w=i
+            elif w==m:
+                cnt+=1
+                w=0
+            if cnt>d:
+                return False
+        if w>0:
+            cnt+=1
+        return cnt<=d
+            
