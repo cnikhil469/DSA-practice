@@ -9,3 +9,21 @@ if k>len(j):
     print(j[-1]+(k-len(j)))
 else:
     print(j[k-1])
+
+#optimized
+class Solution:
+    def findKthPositive(self, arr: List[int], k: int) -> int:
+        l, r = 0,len(arr)-1
+        if k < arr[0]:
+            return k
+        while(l<=r):
+            m = l+(r-l)//2
+            if self.isP(arr, m, k):
+                l = m+1
+            else:
+                r=m-1
+        # r contains the index which has the highest minimum
+        return arr[r] + (k - (arr[r] - (r+1)))
+    def isP(self, arr, m, k):
+        return arr[m] - (m+1) < k
+        
