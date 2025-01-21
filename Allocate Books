@@ -1,0 +1,9 @@
+def findPages(arr: [int], n: int, m: int) -> int:
+
+    # Write your code here
+    # Return the minimum number of pages
+    if m>n:
+        return -1
+    elif m == n:
+        return max(arr)
+    else:
