@@ -1,0 +1,26 @@
+class Solution:
+    def splitArray(self, nums: List[int], k: int) -> int:
+        if k == 1:
+            return sum(nums)
+        l, r = max(nums), sum(nums)
+        s=r
+        while(l<r):
+            m = l+(r-l)//2
+            if self.isP(nums, m, k, s):
+                r=m
+            else:
+                l=m+1
+        return l
+    def isP(self, nums, m, k):
+        h = {0:-1}
+        g = 0
+        for j,i in enumerate(nums):
+            g+=i
+            if g-m in h.keys():
+                b = nums[:]
+                
+                k-=1
+                while k:
+
+            if g not in h.keys():
+                h[g]=j
