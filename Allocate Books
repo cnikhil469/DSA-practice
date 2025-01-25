@@ -7,3 +7,23 @@ def findPages(arr: [int], n: int, m: int) -> int:
     elif m == n:
         return max(arr)
     else:
+        l, r = min(arr), sum(arr)
+        while(l<r):
+            mid = l+(r-l)//2
+            if isP(arr,mid, m):
+                r=mid
+            else:
+                l = mid+1
+        return l
+
+def isP(arr, mid, m):
+    s=0
+    cnt=0
+    for i in arr:
+        cnt+=i
+        if cnt>mid:
+            s+=1
+            cnt=i
+    if cnt:
+        s+=1
+    return s<=m
