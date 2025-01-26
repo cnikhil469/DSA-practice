@@ -1,0 +1,25 @@
+def findLargestMinDistance(boards:list, k:int):
+    # Write your code here
+    # Return an integer
+    if len(boards) == k:
+        return max(boards)
+    l,r = max(boards), sum(boards)
+    while(l<r):
+        m = l+(r-l)//2
+        if isP(boards, m, k):
+            r=m
+        else:
+            l=m+1
+    return l
+
+def isP(boards, m, k):
+    cnt=0
+    k1=0
+    for i in boards:
+        cnt+=i
+        if cnt>m:
+            k1+=1
+            cnt=i
+    if cnt:
+        k1+=1
+    return k1<=k
