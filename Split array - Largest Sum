@@ -1,1 +1,23 @@
-
+class Solution:
+    def splitArray(self, nums: List[int], k: int) -> int:
+        if k == 1:
+            return sum(nums)
+        l, r = max(nums), sum(nums)
+        while(l<r):
+            m = l+(r-l)//2
+            if self.isP(nums, m, k):
+                r=m
+            else:
+                l=m+1
+        return l
+    def isP(self, nums, m, k):
+        cnt=0
+        k1=0
+        for i in nums:
+            cnt+=i
+            if cnt>m:
+                k1+=1
+                cnt=i
+        if cnt:
+            k1+=1
+        return k1<=k
