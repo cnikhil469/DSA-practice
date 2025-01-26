@@ -3,24 +3,21 @@ class Solution:
         if k == 1:
             return sum(nums)
         l, r = max(nums), sum(nums)
-        s=r
         while(l<r):
             m = l+(r-l)//2
-            if self.isP(nums, m, k, s):
+            if self.isP(nums, m, k):
                 r=m
             else:
                 l=m+1
         return l
     def isP(self, nums, m, k):
-        h = {0:-1}
-        g = 0
-        for j,i in enumerate(nums):
-            g+=i
-            if g-m in h.keys():
-                b = nums[:]
-                
-                k-=1
-                while k:
-
-            if g not in h.keys():
-                h[g]=j
+        cnt=0
+        k1=0
+        for i in nums:
+            cnt+=i
+            if cnt>m:
+                k1+=1
+                cnt=i
+        if cnt:
+            k1+=1
+        return k1<=k
