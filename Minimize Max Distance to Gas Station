@@ -44,3 +44,59 @@ if __name__ == '__main__':
 ---
 
 #Optimized Approach
+
+#{ 
+ # Driver Code Starts
+#Initial Template for Python 3
+
+
+# } Driver Code Ends
+#User function Template for python3
+import heapq
+class Solution:
+    def findSmallestMaxDist(self, stations, k):
+        # Code here
+        # arr=[]
+        l = len(stations)
+        # for i in range(1, len(stations)):
+        #     arr.append(stations[i] - stations[i-1])
+        # while(k):
+        #     m = max(arr)
+        #     i = arr.index(m)
+        #     m = round(m/2, 2)
+        #     if i+1 != l-1:
+        #         arr = arr[:i] + [m, m] + arr[i+1:]
+        #     else:
+        #         arr = arr[:i] + [m, m]
+        #     k-=1
+        # return max(arr)
+        #optimized approach
+        q=[]
+        w=[1]*(l-1)
+        for i in range(1, l):
+            d = stations[i] - stations[i-1]
+            heapq.heappush(q, (-d, i-1, d))
+        while(k):
+            val1 = q[0][2]
+            ind = q[0][1]
+            val2 = round(val1/(w[ind]+1), 2)
+            heapq.heappop(q)
+            heapq.heappush(q, (-val2, ind, val1))
+            w[ind]+=1
+            k-=1
+        return -q[0][0]
+                    
+
+#{ 
+ # Driver Code Starts.
+import math
+if __name__ == '__main__':
+    t = int(input())
+    for _ in range(t):
+        N = int(input())
+        stations = list(map(int, input().split()))
+        K = int(input())
+        ob = Solution()
+        print('%.2f' % ob.findSmallestMaxDist(stations, K))
+        print("~")
+# } Driver Code Ends
