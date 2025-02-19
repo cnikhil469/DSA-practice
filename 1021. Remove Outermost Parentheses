@@ -1,0 +1,14 @@
+class Solution:
+    def removeOuterParentheses(self, s: str) -> str:
+        k,m=0,0
+        res=''
+        for j, i in enumerate(s):
+            if i == '(':
+                k-=1
+            else:
+                k+=1
+            if k==0:
+                res+=s[m+1:j]
+                m=j+1
+        return res
+        
