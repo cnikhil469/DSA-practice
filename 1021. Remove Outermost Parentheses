@@ -11,4 +11,19 @@ class Solution:
                 res+=s[m+1:j]
                 m=j+1
         return res
+
+#optimized it. 
+instead of string concat inside a loop, we're using a list and then .join() at the end which reduces the time complexity from n^2 to n
+
+class Solution:
+    def removeOuterParentheses(self, s: str) -> str:
+        k, m = 0, 0
+        res = []
+        for j, i in enumerate(s):
+            k += 1 if i == ')' else -1
+            if k == 0:
+                res.append(s[m+1:j])
+                m = j + 1
+        return ''.join(res)
+
         
