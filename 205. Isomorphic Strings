@@ -1,1 +1,16 @@
 
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        a = {}
+        for j,i in enumerate(s):
+            if i in a.keys():
+                if a[i] != t[j]:
+                    return False
+                else:
+                    continue
+            elif t[j] in a.values():
+                return False
+            a[i] = t[j]
+        return True
+
+        
