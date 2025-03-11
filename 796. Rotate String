@@ -1,1 +1,18 @@
+class Solution:
+    def rotateString(self, s: str, goal: str) -> bool:
+        f = goal[0]
+        for i, val in enumerate(s):
+            if val == f and s[i:]+s[:i] == goal:
+                return True
+        return False 
 
+TC -> O(n^2) bcz of the str concat. 
+
+Efficient approach:
+
+class Solution:
+    def rotateString(self, s: str, goal: str) -> bool:
+        return len(s) == len(goal) if goal in (s+s) else False 
+
+
+TC - O(n)
