@@ -1,0 +1,12 @@
+class Solution:
+    def maxDepth(self, s: str) -> int:
+        m, c = 0, 0
+        for i in s:
+            if i == '(':
+                c+=1
+            elif i==')':
+                m = max(m, c)
+                c-=1
+        return m
+
+TC - O(n)
