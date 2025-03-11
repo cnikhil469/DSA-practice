@@ -1,0 +1,13 @@
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        d = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+        c,i,p = 0, 0, 2000
+        while(i< len(s)):
+            if p < d[s[i]]:
+                c-=p
+                c+=(d[s[i]]-p)
+            else:
+                c+=d[s[i]]
+            p = d[s[i]]
+            i+=1
+        return c
