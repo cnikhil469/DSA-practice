@@ -11,3 +11,4 @@ class Solution:
             p = d[s[i]]
             i+=1
         return c
+TC: O(n)
