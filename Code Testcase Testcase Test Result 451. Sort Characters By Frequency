@@ -1,0 +1,10 @@
+class Solution:
+    def frequencySort(self, s: str) -> str:
+        sd = {}
+        for i in s:
+            sd[i] = sd.get(i,0) + 1
+        sd1 = dict(sorted(sd.items(), key = lambda item: item[1], reverse = True))
+        sd2 = []
+        for i in sd1:
+            sd2.append(''.join(i for j in range(sd1[i])))
+        return ''.join(i for i in sd2)
