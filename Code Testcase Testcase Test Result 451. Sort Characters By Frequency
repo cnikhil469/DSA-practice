@@ -8,3 +8,17 @@ class Solution:
         for i in sd1:
             sd2.append(''.join(i for j in range(sd1[i])))
         return ''.join(i for i in sd2)
+
+TC -> O(nlogn)
+
+Optimized approach:
+
+class Solution:
+    def frequencySort(self, s: str) -> str:
+        frequency = {}
+        for char in s:
+            frequency[char] = frequency.get(char, 0) + 1
+        sorted_chars = sorted(frequency.keys(), key=lambda x: frequency[x], reverse=True)
+        return ''.join(char * frequency[char] for char in sorted_chars)
+
+The SC is improved. 
