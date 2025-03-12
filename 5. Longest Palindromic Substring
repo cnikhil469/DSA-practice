@@ -1,0 +1,21 @@
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        st=ml=d=0
+        for i in range(len(s)):
+            while d < 2:
+                if not d:
+                    l = r = i
+                else:
+                    l = i
+                    r = i+1
+                while l>=0 and r<=len(s)-1 and s[l] == s[r]:
+                    if r-l+1 > ml:
+                        st = l
+                        ml = r-l+1
+                    l-=1
+                    r+=1
+                d+=1
+            d=0
+        return s[st:st+ml]
+This is the optimal version and the TC is O(n^2)
+The bruteforce would be going through all the substrings and checking it's a palindrome -> O(n^3)
