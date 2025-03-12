@@ -1,0 +1,42 @@
+#User function Template for python3
+
+class Solution:
+    def countSubstr (self, s, k):
+        # your code here
+        if k <=0:
+            return 0
+        d = {}
+        j,c, j2 = 0,0, 0
+        while (j2<2):
+            for i in range(len(s)):
+                d[s[i]] = d.get(s[i],0) + 1
+                while len(d) > k:
+                    d[s[j]] -= 1
+                    if d[s[j]] == 0:
+                        del d[s[j]]
+                    j+=1
+                if not j2:
+                    c+=(i-j+1)
+                else:
+                    c-=(i-j+1)
+            j2+=1
+            k-=1
+            j=0
+            d={}
+        return c
+                   
+
+
+#{ 
+ # Driver Code Starts
+#Initial Template for Python 3
+
+t = int(input())
+for tc in range(t):
+    s = input()
+    k = int(input())
+    ob = Solution()
+    print(ob.countSubstr(s, k))
+    print("~")
+
+# } Driver Code Ends
