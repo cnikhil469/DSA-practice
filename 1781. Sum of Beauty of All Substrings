@@ -1,0 +1,13 @@
+class Solution:
+    def beautySum(self, s: str) -> int:
+        d = {}
+        c=0
+        for j in range(len(s)):
+            for i in range(j, len(s)):
+                d[s[i]] = d.get(s[i], 0)+1
+                c+=max(d.values()) - min(d.values())
+            d = {}
+        return c
+
+TC -> O(n^2)
+2 for loops and the max and min of d is C. This is optimal. 
