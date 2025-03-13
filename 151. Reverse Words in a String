@@ -3,4 +3,6 @@ class Solution:
         a = s.split(' ')
         a = [i for i in a if i!= ''][::-1]
         return ' '.join(a)
-        
+
+This is optimal and TC -> O(n)
+if it's return ' '.join(a[::-1]) -> then the runtime is more. Hence, better to reverse it before passing to join function. 
