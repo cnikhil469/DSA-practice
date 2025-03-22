@@ -11,3 +11,19 @@ class Solution:
                     f = f.next
                 return s
         return None
+TC - O(n) and SC is O(1)
+
+2nd approach:
+
+class Solution:
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        f = s = head
+        k = set()
+        while head:
+            if head not in k:
+                k.add(head)
+            else:
+                return head
+            head = head.next
+
+In this approach, SC is O(n) and using set is preferred as lookup time is O(1) in set and O(n) in list. 
