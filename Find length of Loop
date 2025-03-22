@@ -1,0 +1,19 @@
+#User function Template for python3
+class Solution:
+    # Function to find the length of a loop in the linked list.
+    def countNodesInLoop(self, head):
+        #Your code here
+        s=f=head
+        while f and f.next:
+            s = s.next
+            f = f.next.next
+            if s == f:
+                s = s.next
+                k = 1
+                while s!=f:
+                    s=s.next
+                    k+=1
+                return k
+        return 0
+
+TC - O(n) and SC - O(1)
