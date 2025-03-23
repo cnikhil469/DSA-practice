@@ -1,0 +1,108 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        k = 0
+        m = head
+        while m:
+            m = m.next
+            k+=1
+        # k+=1
+        if k%2:
+            m = head
+            c=0
+            while c!=k//2:
+                m = m.next
+                c+=1
+            m = m.next
+            m = self.reverse(m)
+            while head and m:
+                if head.val != m.val:
+                    return False
+                head = head.next
+                m = m.next
+            return True
+        else:
+            m = head
+            c=0
+            while c+1!=k//2:
+                m = m.next
+                c+=1
+            m = m.next
+            m = self.reverse(m)
+            while head and m:
+                if head.val != m.val:
+                    return False
+                head = head.next
+                m = m.next
+            return True
+
+    def reverse(self, head: Optional[ListNode]):
+        if not head or not head.next:
+            return head
+        k = self.reverse(head.next)
+        head.next.next = head
+        head.next = None
+        return k  
+TC - O(n) and SC - O(n)
+
+We can optimize the SC further by using iteration at reversal instead of Recursion.
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        k = 0
+        m = head
+        while m:
+            m = m.next
+            k+=1
+        # k+=1
+        if k%2:
+            m = head
+            c=0
+            while c!=k//2:
+                m = m.next
+                c+=1
+            m = m.next
+            m = self.reverse(m)
+            while head and m:
+                if head.val != m.val:
+                    return False
+                head = head.next
+                m = m.next
+            return True
+        else:
+            m = head
+            c=0
+            while c+1!=k//2:
+                m = m.next
+                c+=1
+            m = m.next
+            m = self.reverse(m)
+            while head and m:
+                if head.val != m.val:
+                    return False
+                head = head.next
+                m = m.next
+            return True
+
+    def reverse(self, head: Optional[ListNode]):
+        if not head or not head.next:
+            return head
+        prev = None
+        c = head
+        while c:
+            n = c.next
+            c.next = prev
+            prev = c
+            c = n
+        return prev
+
+The SC - O(1)
